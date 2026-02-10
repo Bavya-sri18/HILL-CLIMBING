@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name:             </h3>
-<h3>Register Number:             </h3>
+<h3>Name: BAVYA SRI B            </h3>
+<h3>Register Number: 212224230034            </h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -38,6 +38,50 @@ Feedback is provided in terms of heuristic function
 <h3>Step-4:</h3>
 <p> Lopp Step -2 and Step-3  until we achieve the score to be Zero to achieve Global Minima.</p>
 
+<h3>PROGRAM</h3>
+
+```PYTHON
+import random
+import string
+def generate_random_solution(ans):
+    l=len(ans)
+    random_soln=[random.choice(string.printable) for _ in range(l)]
+    return random_soln
+def mutate(soln):
+    ind=random.randint(0,len(soln)-1)
+    soln[ind]=random.choice(string.printable)
+    return soln
+def evaluate(solution,answer):
+    
+    ans=list(answer)
+    diff=0
+    for i in range(len(solution)):
+        s=solution[i]
+        a=ans[i]
+        diff= diff+ abs(ord(a)-ord(s))
+    return diff
+        
+def simplehillclimbing():
+    answer=input()
+    best=generate_random_solution(answer)
+    best_score=evaluate(best,answer)
+    while True:
+        print(best_score,''.join(best))
+        if best_score==0:
+            break
+        new_soln=mutate(list(best))
+        score=evaluate(new_soln,answer)
+        if score<best_score:
+            best_score=score
+            best=new_soln
+simplehillclimbing()
+```
+
+<H3>OUTPUT:</H3>
+<img width="107" height="657" alt="image" src="https://github.com/user-attachments/assets/e9538486-e138-4c0c-9d49-69840ea1b2f2" />   <img width="82" height="667" alt="image" src="https://github.com/user-attachments/assets/6cec136a-2248-4298-a88e-67c4a3f14629" />  <img width="92" height="671" alt="image" src="https://github.com/user-attachments/assets/23e18f6e-0e99-4e7a-938f-f3355b982b0e" />
+
+
+
 <hr>
 <h2>Sample Input and Output</h2>
 <h2>Sample String:</h2> Artificial Intelligence
@@ -59,3 +103,8 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
+
+<H3>RESULT:</H3>
+<P>
+ Thus the Simple Hill Climb Algorithm Implemented successfully.
+</P>
